@@ -1,0 +1,48 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-void text-white;
+    background-image:
+      radial-gradient(circle at 15% 0%, rgba(139, 60, 255, 0.08), transparent 40%),
+      radial-gradient(circle at 85% 10%, rgba(46, 107, 255, 0.10), transparent 45%);
+    background-attachment: fixed;
+    /* Evita che notch / barra home dell'iPhone coprano i contenuti */
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+  h1, h2, h3, h4 {
+    @apply font-display tracking-wide;
+  }
+  ::selection {
+    @apply bg-electric/40 text-white;
+  }
+  /* Scrollbar in stile HUD */
+  ::-webkit-scrollbar { width: 8px; height: 8px; }
+  ::-webkit-scrollbar-track { background: #0d0d15; }
+  ::-webkit-scrollbar-thumb { background: #2a2a40; border-radius: 999px; }
+  ::-webkit-scrollbar-thumb:hover { background: #3a3a56; }
+}
+
+@layer components {
+  /* Pannello con angolo tagliato in stile Persona 5 */
+  .hud-panel {
+    @apply relative bg-panel/80 border border-white/5 backdrop-blur-sm;
+    clip-path: polygon(0 0, 100% 0, 100% calc(100% - 14px), calc(100% - 14px) 100%, 0 100%);
+  }
+  .hud-panel::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(115deg, rgba(255,255,255,0.04), transparent 40%);
+  }
+  .eyebrow {
+    @apply text-[11px] font-mono uppercase tracking-[0.25em] text-muted;
+  }
+}
